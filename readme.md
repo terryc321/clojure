@@ -1,5 +1,12 @@
 # clojure
 
+foreword
+
+clojure is not clojurescript , whilst languages appear similar , clojurescript leans on javascript language and not the java language
+
+### day 1 
+
+managed to get antlr working using clojure !
 
 ### learning curve
 
@@ -25,6 +32,11 @@ user> (+' Long/MAX_VALUE 1)
 
 actual ```+'``` is the lisp plus , plus hyphen 
 
+### interrupting execution
+
+some flags can pass to java virtual machine to enable execution interrupt
+
+how we can use this in the emacs + cider environment is not yet understood
 
 ### emacs + cider
 
