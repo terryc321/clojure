@@ -1,5 +1,6 @@
 # clojure
 
+
 ### learning curve
 
 projects listed below are the sequence in which they were written
@@ -11,6 +12,19 @@ projects listed below are the sequence in which they were written
 
 follow clojure documentation on java-time find for whatever reason cannot find maven
 special repository ```~/.m2/repository``` so even if specify dependencies in either ```deps.edn``` or ```project.clj``` it will never work regardless of what do
+
+### regular ```+``` is not lisp plus
+
+```
+user> (+ Long/MAX_VALUE 1)
+Execution error (ArithmeticException) at java.lang.Math/addExact (Math.java:931).
+long overflow
+user> (+' Long/MAX_VALUE 1)
+9223372036854775808N
+```
+
+actual ```+'``` is the lisp plus , plus hyphen 
+
 
 ### emacs + cider
 
