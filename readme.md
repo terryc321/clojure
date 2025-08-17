@@ -136,7 +136,7 @@ cider-jack-in-clj
 
 
 
-### single segment namespaces
+- single segment namespaces
 
 Note that we use my-stuff.core instead of just my-stuff since single-segment namespaces are discouraged in Clojure as using those would imply classes are being assigned to the default (no-name) package.
 
@@ -196,7 +196,15 @@ what if java is unavailable for whatever reason ?
 
 ## clj-antlr
 
-get source code [clj-antlr](https://github.com/aphyr/clj-antlr) 
+github source code [clj-antlr](https://github.com/aphyr/clj-antlr) 
+
+no need to download this as we can use clojure deps.edn
+
+```
+clj-antlr/clj-antlr {:mvn/version "0.2.14"}
+```
+
+but if were going to do this ... you may build it from source like this
 
 ```
 $ git clone git@github.com:aphyr/clj-antlr.git
