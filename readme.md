@@ -10,8 +10,7 @@ projects listed below are the sequence in which they were written
 ### pitfalls
 
 follow clojure documentation on java-time find for whatever reason cannot find maven
-special repository ```~/.m2/repository``` so even if specify dependencies in either deps.edn
-or project.clj it will never work regardless of what do
+special repository ```~/.m2/repository``` so even if specify dependencies in either ```deps.edn``` or ```project.clj``` it will never work regardless of what do
 
 ### emacs + cider
 
