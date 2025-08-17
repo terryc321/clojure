@@ -42,6 +42,7 @@ we can find what versions of a specific library exist
 $ clj -X:deps find-versions :lib clojure.java-time/clojure.java-time
 ```
 
+create more of the project infrastructure
 ```
 $ mkdir src
 $ touch src/hello.clj
@@ -67,6 +68,10 @@ then to run hello world we do
 ```
 clj -X hello/run
 ```
+
+supposed to see ```Hello world, the time is 12:19 PM```
+
+
 
 and find java_time class not found
 ```
