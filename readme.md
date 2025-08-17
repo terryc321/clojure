@@ -1,5 +1,39 @@
 # clojure
 
+## learning curve
+
+projects listed below are the sequence in which they were written
+
+- my-stuff example using lein to make app uses clojure.java-time
+- intro-001 uses antlr parser to split a list of numbers up , solves adventcode2024-day2 part1 mostly
+
+## pitfalls
+
+follow clojure documentation on java-time find for whatever reason cannot find maven
+special repository ```~/.m2/repository``` so even if specify dependencies in either deps.edn
+or project.clj it will never work regardless of what do
+
+## emacs + cider
+
+just use ```M-x cider-jack-in-clj``` should be in business. 
+
+sometimes company mode popups conflict with what you typed ?
+
+
+## critique
+
+has no support for mutually recursive functions - although tries to be functional
+
+has recur keyword jumps back , simulate some recursive functions
+
+not a proper functional language
+
+working with java which is itself a complete mess to understand , need to know entire OOP 
+structure of java software development kit before knowing which class should be looking at
+
+
+
+
 ## first steps ``my-stuff`` project
 
 following is ripped from [Deps and CLI](https://clojure.org/guides/deps_and_cli) clojure documentation
