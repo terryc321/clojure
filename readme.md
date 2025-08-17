@@ -2,7 +2,7 @@
 
 ## antlr4
 
-see [building antlr](https://github.com/antlr/antlr4/blob/master/doc/building-antlr.md) using maven tool 
+see [building antlr](https://github.com/antlr/antlr4/blob/master/doc/building-antlr.md#compile) using maven tool 
 
 ```
 $ export MAVEN_OPTS="-Xmx1G"   # don't forget this on linux
