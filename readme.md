@@ -82,6 +82,8 @@ Could not locate java_time/api__init.class, java_time/api.clj or java_time/api.c
 
 ## lein
 
+![](images/leiningen.jpg)
+
 install Leiningen for clojure on the operating system 
 
 start a new clojure application
