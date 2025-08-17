@@ -2,11 +2,7 @@
 
 ## antlr4
 
-see this link Compile
-
-[https://github.com/antlr/antlr4/blob/master/doc/building-antlr.md]()
-
-rebuild antlr4 using maven tool 
+see [building antlr](https://github.com/antlr/antlr4/blob/master/doc/building-antlr.md) using maven tool 
 
 ```
 $ export MAVEN_OPTS="-Xmx1G"   # don't forget this on linux
@@ -22,8 +18,7 @@ $ sudo mkdir -pv /usr/local/lib/antlr
 $ sudo cp -v ./tool/target/antlr4-4.13.3-SNAPSHOT-complete.jar /usr/local/lib/antlr
 ```
 
-see this link to install antlr4 so it is a command line tool 
-[https://www.cs.upc.edu/~cl/practica/install.html]()
+see this link [to install antlr4](https://www.cs.upc.edu/~cl/practica/install.html) so it is a command line tool 
 
 here is the shell script for antlr tool , place it in ```/usr/local/bin/antlr```
 
