@@ -80,6 +80,53 @@ Could not locate java_time/api__init.class, java_time/api.clj or java_time/api.c
 
 ```
 
+## lein
+
+install Leiningen for clojure on the operating system 
+
+start a new clojure application
+```
+lein new app my-stuff
+```
+
+lets see the directories laid out
+```
+# see how it looks like using the "tree" command
+$ tree -F -a --dirsfirst my-stuff/
+```
+
+```
+mystuff/
+├── doc/
+│   └── intro.md
+├── resources/
+├── src/
+│   └── mystuff/
+│       └── core.clj
+├── test/
+│   └── mystuff/
+│       └── core_test.clj
+├── CHANGELOG.md
+├── .gitignore
+├── .hgignore
+├── LICENSE
+├── project.clj
+└── README.md
+
+7 directories, 9 files
+```
+
+
+
+### single segment namespaces
+
+Note that we use my-stuff.core instead of just my-stuff since single-segment namespaces are discouraged in Clojure as using those would imply classes are being assigned to the default (no-name) package.
+
+
+```
+
+```
+
 ## antlr4
 
 see [building antlr](https://github.com/antlr/antlr4/blob/master/doc/building-antlr.md#compile) using maven tool 
