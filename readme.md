@@ -1,6 +1,6 @@
 # clojure
 
-## first steps
+## first steps ``my-stuff`` project
 
 following is ripped from [Deps and CLI](https://clojure.org/guides/deps_and_cli) clojure documentation
 
@@ -71,14 +71,18 @@ clj -X hello/run
 
 supposed to see ```Hello world, the time is 12:19 PM```
 
-
-
 and find java_time class not found
 ```
 Execution error (FileNotFoundException) at hello/eval226$loading (hello.clj:1).
 Could not locate java_time/api__init.class, java_time/api.clj or java_time/api.cljc on classpath. Please check that namespaces with dashes use underscores in the Clojure file name.
 
 ```
+
+```
+# solution hack is just set CLASSPATH to maven repository where it is downloaded to
+export CLASSPATH="/home/terry/.m2/repository" 
+```
+
 
 ## lein
 
@@ -98,15 +102,15 @@ $ tree -F -a --dirsfirst my-stuff/
 ```
 
 ```
-mystuff/
+my-stuff/
 ├── doc/
 │   └── intro.md
 ├── resources/
 ├── src/
-│   └── mystuff/
+│   └── my-stuff/
 │       └── core.clj
 ├── test/
-│   └── mystuff/
+│   └── my-stuff/
 │       └── core_test.clj
 ├── CHANGELOG.md
 ├── .gitignore
@@ -117,6 +121,18 @@ mystuff/
 
 7 directories, 9 files
 ```
+
+change into the ```my-stuff``` directory
+
+```
+$ cd my-stuff
+$ lein repl
+```
+
+alternatively load src/my-stuff/core.clj into emacs 
+run M-x cider
+choose root directory to be toplevel my-stuff as opposed to ones under src and test
+cider-jack-in-clj
 
 
 
