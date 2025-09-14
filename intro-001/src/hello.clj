@@ -134,17 +134,22 @@
   (count xs))
 
 
+;; use recur to 
+
+
 (defn all-increasing?
   [xs]
   (defn helper [xs n]
     (cond
       (empty? xs) true
       true (if (let [diff (- n (first xs))]
-                 (and (>= diff 1) (<= diff 3)))
-             (helper (rest xs) (first xs)))))
+                 (and (<= diff -1) (>= diff -3)))
+             (recur (rest xs) (first xs)))))
   (cond
     (empty? xs) true
     true (helper (rest xs) (first xs))))
+
+(all-increasing? '(10 7 4 3 2 1))
 
 
 (defn all-decreasing?
@@ -153,11 +158,13 @@
     (cond
       (empty? xs) true
       true (if (let [diff (- n (first xs))]
-                 (and (<= diff -1) (>= diff -3)))
-             (helper (rest xs) (first xs)))))
+                 (and (>= diff 1) (<= diff 3)))
+             (recur (rest xs) (first xs)))))
   (cond
     (empty? xs) true
     true (helper (rest xs) (first xs))))
+
+(all-decreasing? '(10 7 4 3 2 1))
 
 
 ;; differ by atleast 1 and atmost 3
@@ -207,13 +214,19 @@
 
 (make-big-list-always-increasing 10)
 
-(make-big-list-always-increasing 100000)
-(make-big-list-always-increasing 10000000)
-(make-big-list-always-increasing 1000000000)
+;; (make-big-list-always-increasing 100000)
+;; (make-big-list-always-increasing 10000000)
+;; (make-big-list-always-increasing 1000000000)
 
 ;;(conj 'a-list 'a-value) <=> (cons a-value a-list)
 
-(def some-big-list (make-big-list 100000))
+;; (def some-big-list (make-big-list-always-increasing 100000))
+;; (all-increasing? some-big-list)
+
+;; have some screwy ways to think in clojure , mostly c type code
+;; functional but not thread safe ?
+;; 
+
 
 
 
