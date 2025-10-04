@@ -1,4 +1,4 @@
-(ns intro-002.core)
+(ns getting-started)
 
 (defn foo
   "I don't do a whole lot."
