@@ -4,6 +4,19 @@ foreword
 
 clojure is not clojurescript , whilst languages appear similar , clojurescript leans on javascript language and not the java language
 
+### getting started
+
+clojure for the brave and true
+
+```
+lein new intro-002
+```
+
+creates necessary project files and everything required into a directory called intro-002
+
+
+
+
 ### day 1 
 
 managed to get antlr working using clojure !
