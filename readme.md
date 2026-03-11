@@ -9,13 +9,19 @@ clojure is not clojurescript , whilst languages appear similar , clojurescript l
 clojure for the brave and true
 
 ```
-lein new intro-002
+lein new app intro-002
 ```
 
 creates necessary project files and everything required into a directory called intro-002
 
+```
+cd intro-002
+lein run
+```
 
+should see Hello World !
 
++'
 
 ### day 1 
 

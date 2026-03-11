@@ -15,4 +15,9 @@
 
 +
 
+(ns clojure)
+
+(defn -main []
+  (println "hello world from clojure!"))
+
 
