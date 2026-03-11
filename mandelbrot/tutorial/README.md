@@ -29,10 +29,16 @@ Downloading: clojure/java-time/clojure.java-time/maven-metadata.xml from clojars
 {:mvn/version "1.4.3"}
 ```
 
+Lets now make a source directory for the actual project code 
+
 ```
 > mkdir src
 > touch src/hello.clj
 ```
+
+Here is what hello.clj source file can look like.
+
+Demonstrates a run procedure that will display the local time.
 
 ```
 (ns hello
@@ -46,15 +52,16 @@ Downloading: clojure/java-time/clojure.java-time/maven-metadata.xml from clojars
     instant))
 
 (defn run [opts]
-  (println "Hello world, the time is" (time-str (t/instant))))
-  
- 
+  (println "Hello world, the time is" (time-str (t/instant)))) 
+
 ```
+
+We can run this program from the command line if we wish 
 
 ```
 > clj -X hello/run
 ```
-from emacs we can run the hello world example
+Alternatively using emacs 
 
 ```
 M-x cider-jack-in-clj
@@ -71,8 +78,10 @@ Alternatively we can run the hello.clj run procedure from another namespace usin
 ```
 user>(hello/run 1)
 Hello world, the time is 12:20 pm
-
 ```
+
+
+
 
 
 
