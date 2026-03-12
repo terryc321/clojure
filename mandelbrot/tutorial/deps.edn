@@ -1,7 +1,18 @@
 
 ;; https://clojure.org/guides/deps_and_cli#_running_a_repl_and_using_libraries
-{:deps
- {clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}}}
+{
+ :paths ["src"]
+ :deps
+ {
+  clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}
+  cljfx/cljfx {:mvn/version "1.10.6"}
+  }
+ :aliases {:run {:main-opts ["-m" "example"]}
+           :jvm-opts ["--enable-native-access=ALL-UNNAMED"]} 
+ }
+
+
+
 
 
 

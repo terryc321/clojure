@@ -1,0 +1,48 @@
+(ns canvas2
+  (:require [cljfx.api :as fx])
+  (:import [javafx.scene.canvas Canvas]
+           [javafx.scene.paint Color]))
+
+(def *window-size (atom {:width 800 :height 600}))
+
+(defn root [{:keys [fx/context]}]
+  {:fx/type :stage
+   :showing true
+   :width (:width @*window-size)
+   :height (:height @*window-size)
+   :scene {:fx/type :scene
+           :root {:fx/type :canvas
+                  :width (:width @*window-size)
+                  :height (:height @*window-size)}}
+   :desc {:fx/type fx/ext-on-instance-lifecycle
+          :on-created (fn [^javafx.stage.Stage stage]
+                        (let [w-prop (.widthProperty stage)
+                              h-prop (.heightProperty stage)]
+                          (.addListener w-prop ;;(.widthProperty stage)
+                                        (reify javafx.beans.value.ChangeListener
+                                          (changed [this _ _ new-val]
+                                            (swap! *window-size assoc :width new-val))))
+                          ))}})
+
+ 
+
+
+(def renderer
+  (fx/create-renderer
+    :middleware
+    (fx/wrap-map-desc
+      (fn [size]
+        {:fx/type :stage
+         :showing true
+         :width (:width size)
+         :height (:height size)
+         :scene {:fx/type :scene
+                 :root {:fx/type :v-box
+                        :children [{:fx/type root
+                                    :width (:width size)
+                                    :height (:height size)}]}}}))))
+
+;; Initialize with initial window size
+(fx/mount-renderer *window-size renderer)
+;; C + u-c-o  clear cider repl window
+
