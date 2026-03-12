@@ -6,6 +6,7 @@
  {
   clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}
   cljfx/cljfx {:mvn/version "1.10.6"}
+  complex/complex {:mvn/version "0.1.12"}
   }
  :aliases {:run {:main-opts ["-m" "example"]}
            :jvm-opts ["--enable-native-access=ALL-UNNAMED"]} 

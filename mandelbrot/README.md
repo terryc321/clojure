@@ -233,5 +233,27 @@ Nothing on the screen , huh. Try deps.edn with cljfx version 1.7.12 . Still noth
 ```
 
 
+# Day Two
+
+mandelbrot using ``` https://github.com/alanforr/complex ``` says clojars 0.1.12 . 
+
+we can see this from clojars , we verify clojars complex/complex latest version is indeed 0.1.12 . so we can also verify that we are indeed able to find latest version of a library.
+
+## Q . what if library was not called complex/complex ?
+
+```
+clj -X:deps find-versions :lib complex/complex
+Downloading: complex/complex/maven-metadata.xml from clojars
+{:mvn/version "0.1.5"}
+{:mvn/version "0.1.6"}
+{:mvn/version "0.1.7"}
+{:mvn/version "0.1.8"}
+{:mvn/version "0.1.9"}
+{:mvn/version "0.1.10"}
+{:mvn/version "0.1.11"}
+{:mvn/version "0.1.12"}
+```
+
+Lets start cider-jack-in-clj .
 
 
