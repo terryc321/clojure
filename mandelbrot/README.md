@@ -1,6 +1,6 @@
 # playground
 
-[Go to Mandelbrot source code](#getting-started)
+[Go to Mandelbrot (day two)](#day-two)
 
 
 # deps.new
