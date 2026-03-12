@@ -256,4 +256,172 @@ Downloading: complex/complex/maven-metadata.xml from clojars
 
 Lets start cider-jack-in-clj .
 
+## complex/complex 
+
+trouble detecting complex/complex even though its in the deps.edn
+
+```
+{
+ :paths ["src"]
+ :deps
+ {
+  clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}
+  cljfx/cljfx {:mvn/version "1.10.6"}
+  complex/complex {:mvn/version "0.1.12"}
+  }
+ :aliases {:run {:main-opts ["-A" "mandelbrot1"]}
+           :jvm-opts ["--enable-native-access=ALL-UNNAMED"]} 
+ }
+
+```
+
+```
+> mvn install:install-file \
+  -Dfile=complex-0.1.12.jar \
+  -DgroupId=complex \
+  -DartifactId=complex \
+  -Dversion=0.1.12 \
+  -Dpackaging=jar
+```
+
+
+```
+> clj -r 
+```
+
+## complex/complex solved
+
+```
+> clj
+user=> (require '[complex.core :as c])
+nil
+
+user=> c/complex
+#object[complex.core$complex 0x408613cc "complex.core$complex@408613cc"]
+
+user=> (c/complex 1)
+#object[org.apache.commons.math3.complex.Complex 0x91c4a3f "(1.0, 0.0)"]
+```
+
+so why is it called complex.core then , whats the purpose , why not complex/complex 
+
+We can see what is in the jar file , 
+
+```
+> jar -tf jar -tf ~/.m2/repository/complex/complex/0.1.12/complex-0.1.12.jar
+
+META-INF/MANIFEST.MF
+META-INF/maven/complex/complex/pom.xml
+META-INF/leiningen/complex/complex/project.clj
+META-INF/leiningen/complex/complex/README.md
+META-INF/leiningen/complex/complex/LICENSE
+complex/
+complex/core$sqrt$fn__88.class
+complex/core$nth_root.class
+complex/core$add2c.class
+complex/core$tanh$fn__91.class
+complex/core$stringify.class
+complex/core$real_part.class
+complex/core$_.class
+complex/core$sqrt1z$fn__94.class
+complex/core$imaginary_part.class
+complex/core$polar_form.class
+complex/core$subtract2c.class
+complex/core$sqrt.class
+complex/core$abs.class
+complex/core$divide2c.class
+complex/core$equals.class
+complex/core$sin.class
+complex/core$pow.class
+complex/core$_SLASH_.class
+complex/core$sqrt1z.class
+complex/core$cosh.class
+complex/core$negate.class
+complex/core$reciprocal.class
+complex/core$log$fn__79.class
+complex/core$conjugate.class
+complex/core$loading__4958__auto__.class
+complex/core$exp.class
+complex/core$multiply2c.class
+complex/core$abs$fn__56.class
+complex/core$exp$fn__76.class
+complex/core$cos$fn__70.class
+complex/core__init.class
+complex/core$tan.class
+complex/core$tanh.class
+complex/core$argument$fn__59.class
+complex/core$cos.class
+complex/core$_STAR_.class
+complex/core$argument.class
+complex/core$sin$fn__67.class
+complex/core$complex.class
+complex/core$log.class
+complex/core$tan$fn__73.class
+complex/core$cosh$fn__85.class
+complex/core$sinh$fn__82.class
+complex/core$fn__37.class
+complex/core$_PLUS_.class
+complex/core$powc.class
+complex/core$sinh.class
+META-INF/
+META-INF/maven/
+META-INF/maven/complex/
+META-INF/maven/complex/complex/
+META-INF/maven/complex/complex/pom.properties
+complex/.DS_Store
+complex/core.clj
+```
+
+so in the source code it will look like 
+
+```
+(ns mandelbrot1
+  (:require [complex.core :as c]))
+==> nil
+```
+
+which means the library can now be found.
+
+The complex number in complex/complex looks to be just floating point or double precision, not arbitrary precision floating point in any way which is unfortunate.  So we probably would be better off if we did not use clojure for this project as there is some amount of mathematical knowledge features.
+
+We can increase precision on the floating point 
+
+# complex/complex
+
+represented as a java double
+
+```
+(ns mandelbrot1
+  (:require [complex.core :as c]))
+
+(def a (c/complex 1 2))
+
+;; split complex number into the two components real part and imaginary part
+(c/real-part a)
+
+(c/imaginary-part a)
+
+;; square complex number
+(c/* a a)
+
+;; add a complex number
+(c/+ a (complex 3 4))
+;; expect (complex 4 6)
+
+(c/= (complex 4 6) (c/+ a (complex 3 4)))
+;; should be true
+
+```
+
+## caution complex
+
+clearly its quite easy to produce some valuable nonsensical results
+
+```
+mandelbrot1> (> 4.000000000000001 4)
+==> true
+
+mandelbrot1> (> 4.0000000000000001 4)
+==> false
+```
 
