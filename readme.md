@@ -1,4 +1,20 @@
-# clojure
+# Clojure
+
+# Mandelbrot mini project
+
+See Mandelbrot in clojure - text based image generation 
+
+![Mandelbrot image](mandelbrot/tutorial/test/test.jpg)
+
+[Mandelbrot project](mandelbrot/README.md)
+
+
+
+# Todos 
+
+
+
+# Fix me
 
 foreword
 

@@ -1,5 +1,6 @@
 # playground
 
+[Go to Mandelbrot source code](#getting-started)
 
 
 # deps.new
