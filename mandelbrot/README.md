@@ -2,6 +2,17 @@
 
 [Go to Mandelbrot (day two)](#day-two)
 
+we can run mandelbrot1 image generator pgm will output readable text to standard output
+
+```
+clj -X 'mandelbrot1/-main'
+```
+
+Q. how do we pass arguments to program ?
+
+something to do with opts yes , but how.
+
+Q. 
 
 # deps.new
 
@@ -426,3 +437,152 @@ mandelbrot1> (> 4.0000000000000001 4)
 ==> false
 ```
 
+# Day Three
+
+try get something on the screen with humble ui
+
+```
+> clj -r
+Downloading: io/github/humbleui/skija-linux-x64/0.116.2/skija-linux-x64-0.116.2.pom from central
+Downloading: io/github/humbleui/skija-macos-x64/0.116.2/skija-macos-x64-0.116.2.pom from central
+Downloading: io/github/humbleui/jwm/0.4.18/jwm-0.4.18.pom from central
+Downloading: io/github/humbleui/skija-windows-x64/0.116.2/skija-windows-x64-0.116.2.pom from central
+Downloading: io/github/humbleui/skija-macos-arm64/0.116.2/skija-macos-arm64-0.116.2.pom from central
+Downloading: io/github/humbleui/types/0.2.0/types-0.2.0.pom from central
+Downloading: io/github/tonsky/extend-clj/0.1.0/extend-clj-0.1.0.pom from clojars
+Downloading: io/github/humbleui/skija-shared/0.116.2/skija-shared-0.116.2.pom from central
+Downloading: io/github/humbleui/skija-windows-x64/0.116.2/skija-windows-x64-0.116.2.jar from central
+Downloading: io/github/humbleui/types/0.2.0/types-0.2.0-clojure.jar from central
+Downloading: io/github/humbleui/skija-linux-x64/0.116.2/skija-linux-x64-0.116.2.jar from central
+Downloading: io/github/humbleui/jwm/0.4.18/jwm-0.4.18.jar from central
+Downloading: io/github/humbleui/skija-macos-x64/0.116.2/skija-macos-x64-0.116.2.jar from central
+Downloading: io/github/humbleui/skija-macos-arm64/0.116.2/skija-macos-arm64-0.116.2.jar from central
+Downloading: io/github/humbleui/skija-shared/0.116.2/skija-shared-0.116.2.jar from central
+Downloading: io/github/tonsky/extend-clj/0.1.0/extend-clj-0.1.0.jar from clojars
+WARNING: Implicit use of clojure.main with options is deprecated, use -M -r
+
+```
+
+The ai slop given was humble1.clj
+
+```
+(ns humble1
+  (:require [io.github.humbleui.ui :as ui]))
+
+
+(ui/defcomp app []
+  [ui/center
+   [ui/label "Hello, world"]])
+
+(defn -main [& args]
+  (ui/start-app!
+    (ui/window #'app)))
+
+```
+
+heres the updated deps.edn , theres no humble-ui on clojars , so i guess no maven version
+
+```
+;; completely new deps.edn for humble.ui no idea what any of this is actually doing at all 
+{:paths ["src" "resources"]
+ :deps
+ {org.clojure/clojure                  {:mvn/version "1.12.0"}
+  ;;io.github.humbleui/humbleui          {:mvn/version "0.0.9"}
+  ;; io.github.humbleui/humbleui {:git/sha "c5b4179e44c486b2d9171be845eb14ff8a7936cf"}
+  io.github.humbleui/humbleui {:git/sha "774853e4ec912168ad96fff96c0296dda98531f6"}
+  io.github.humbleui/types$clojure     {:mvn/version "0.2.0"}
+  io.github.humbleui/jwm               {:mvn/version "0.4.18" :exclusions [io.github.humbleui/types]}
+  io.github.humbleui/skija-windows-x64 {:mvn/version "0.116.2" :exclusions [io.github.humbleui/types]}
+  io.github.humbleui/skija-linux-x64   {:mvn/version "0.116.2" :exclusions [io.github.humbleui/types]}
+  io.github.humbleui/skija-macos-x64   {:mvn/version "0.116.2" :exclusions [io.github.humbleui/types]}
+  io.github.humbleui/skija-macos-arm64 {:mvn/version "0.116.2" :exclusions [io.github.humbleui/types]}
+  io.github.tonsky/extend-clj          {:mvn/version "0.1.0"}}
+
+ :aliases
+ {:dev
+  {:main-opts   ["-m" "user"]
+   :extra-paths ["dev" "test"]
+   :extra-deps  {io.github.tonsky/duti       {:git/sha "fc833a87a8687b67e66281e216eeee1ad6048168"}
+                 io.github.tonsky/clj-reload {:mvn/version "0.7.0"}
+                 criterium/criterium         {:mvn/version "0.4.6"}
+                 com.clojure-goes-fast/clj-async-profiler {:mvn/version "1.3.0"}}
+   :jvm-opts    ["-ea"
+                 "-Dclojure.main.report=stderr"
+                 "-Duser.language=en"
+                 "-Duser.country=US"
+                 "-Dfile.encoding=UTF-8"
+                 "-Djdk.attach.allowAttachSelf"
+                 "-XX:+UnlockDiagnosticVMOptions"
+                 "-XX:+DebugNonSafepoints"
+                 "-XX:+EnableDynamicAgentLoading"
+                 "-Dclj-async-profiler.output-dir=."]}
+  }}
+
+```
+
+We can look at what is defined in ui 
+
+```
+(ns humble1
+  (:require [io.github.humbleui.ui :as ui]
+            [clojure.repl :as repl]))
+
+;; dir is part of clojure.repl
+;; shows library loaded
+
+(repl/dir io.github.humbleui.ui)
+
+animation
+backdrop
+button
+canvas
+center
+checkbox
+clickable
+clip
+clip-rrect
+column
+default-theme
+draggable
+dynamic
+event-listener
+focus-controller
+focusable
+gap
+grid
+halign
+height
+hoverable
+image
+image-snapshot
+key-listener
+label
+max-width
+mouse-listener
+on-key-focused
+padding
+rect
+rounded-rect
+row
+shadow
+shadow-inset
+slider
+stack
+start-app!
+svg
+text-field
+text-input
+text-listener
+toggle
+tooltip
+valign
+vscroll
+vscrollbar
+width
+window
+with-bounds
+with-context
+with-cursor
+with-scale
+
+```
